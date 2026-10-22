@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Math 1 Midterm Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#F5F9FD; --grid:rgba(75,156,211,.13); --surface:#FFFFFF; --ink:#13283D; --muted:#4F6478; --line:#D3DFEA;
+  --blue:#4B9CD3; --blue-deep:#1B67A0; --blue-soft:#E4F1FA;
+  --orange:#F56600; --orange-deep:#B04400; --orange-soft:#FFEDE0;
+  --green:#1D7F52; --green-soft:#E2F5EA; --red:#B3261E; --red-soft:#FCE9E7; --teal:#25857B;
+  --btn-bg:#1B67A0; --btn-ink:#FFFFFF; --on-fill:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1A27; --grid:rgba(108,179,227,.09); --surface:#16273A; --ink:#E8F0F7; --muted:#9DB2C5; --line:#2C4259;
+    --blue:#6CB3E3; --blue-deep:#8CC6F0; --blue-soft:#1B3A55;
+    --orange:#FF8A3D; --orange-deep:#FFA566; --orange-soft:#3A2414;
+    --green:#5CCB93; --green-soft:#153427; --red:#FF8F86; --red-soft:#3C1B19; --teal:#58C4B8;
+    --btn-bg:#6CB3E3; --btn-ink:#0E1A27; --on-fill:#0E1A27;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1A27; --grid:rgba(108,179,227,.09); --surface:#16273A; --ink:#E8F0F7; --muted:#9DB2C5; --line:#2C4259;
+  --blue:#6CB3E3; --blue-deep:#8CC6F0; --blue-soft:#1B3A55;
+  --orange:#FF8A3D; --orange-deep:#FFA566; --orange-soft:#3A2414;
+  --green:#5CCB93; --green-soft:#153427; --red:#FF8F86; --red-soft:#3C1B19; --teal:#58C4B8;
+  --btn-bg:#6CB3E3; --btn-ink:#0E1A27; --on-fill:#0E1A27;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ color-scheme:dark; } }
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0; color:var(--ink);
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+  font:17px/1.55 'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+h1,h2,h3{font-family:'Bricolage Grotesque','Atkinson Hyperlegible',system-ui,sans-serif;line-height:1.15;margin:0;letter-spacing:-.01em}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:16px 18px 72px}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 0 18px}
+.brand{background:none;border:0;padding:6px 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:var(--ink)}
+.nav{display:flex;gap:6px}
+.nav button{background:none;border:0;padding:8px 12px;border-radius:8px;color:var(--muted);min-height:40px}
+.nav button:hover{background:var(--blue-soft);color:var(--ink)}
+.nav button[aria-current="page"]{color:var(--ink);font-weight:700;box-shadow:inset 0 -3px 0 var(--orange)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-weight:700}
+.btn:hover{border-color:var(--blue-deep)}
+.btn.primary{background:var(--btn-bg);color:var(--btn-ink);border-color:var(--btn-bg)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.small{min-height:38px;padding:6px 14px;font-size:15px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;margin:6px 0 30px}
+.hero h1{font-size:clamp(34px,6.4vw,56px);font-weight:800;letter-spacing:-.025em;margin-bottom:14px}
+.lead{font-size:19px;max-width:44ch;margin:0 0 20px;color:var(--muted)}
+.hero-svg{width:100%;height:auto;display:block;background:var(--surface);border:1.5px solid var(--line);border-radius:12px}
+@media (max-width:700px){.hero{grid-template-columns:1fr}}
+
+/* section cards on home */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-left:7px solid var(--tabc,var(--blue));border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.card h2{font-size:22px;font-weight:800}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.bar{height:9px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--tabc,var(--blue));transition:width .3s}
+.stat{font-size:15px;color:var(--muted)}
+.card .row{margin-top:auto}
+.note{color:var(--muted);max-width:68ch;margin:26px 0 0;font-size:16px}
+
+/* section view */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:4px 0 22px}
+.sec-head h1{font-size:clamp(26px,4.6vw,38px);font-weight:800;border-left:7px solid var(--tabc,var(--blue));padding-left:14px}
+.tabs{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.tabs button{background:none;border:0;padding:10px 20px;min-height:44px;font-weight:700;color:var(--muted)}
+.tabs button[aria-current="page"]{background:var(--btn-bg);color:var(--btn-ink)}
+.back{background:none;border:0;padding:4px 0;color:var(--blue-deep);font-weight:700;margin-bottom:6px}
+
+/* review topics */
+.topic{background:var(--surface);border:1.5px solid var(--line);border-left:7px solid var(--tabc,var(--blue));border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.topic h2{font-size:23px;font-weight:800;margin-bottom:10px}
+.topic p{max-width:66ch;margin:0 0 12px}
+.eg,.watch{border-radius:8px;padding:12px 16px;margin:14px 0;max-width:70ch}
+.eg{background:var(--blue-soft);border:1px solid var(--blue)}
+.watch{background:var(--orange-soft);border:1px solid var(--orange)}
+.eg b:first-child,.watch b:first-child{font-weight:700}
+.topic .btn{margin-top:6px}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.jump button{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px;min-height:38px}
+.jump button:hover{border-color:var(--blue-deep)}
+
+/* fractions + math */
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .18em;font-size:.95em}
+.frac .n{border-bottom:1.5px solid currentColor;padding:0 .25em 1px}
+.frac .d{padding:1px .25em 0}
+.work{background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:12px 0;line-height:1.9}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
+
+/* figures */
+.fig{width:100%;max-width:560px;height:auto;display:block;margin:12px 0}
+.fig.hist{max-width:360px}
+.trio .fig.hist{max-width:100%;margin:0}
+.fg-txt{fill:var(--muted);font:13px 'Atkinson Hyperlegible',system-ui,sans-serif}
+.fg-lab{fill:var(--ink);font-weight:700}
+.fg-grid{stroke:var(--line);stroke-width:1}
+.fg-axis{stroke:var(--ink);stroke-width:1.5}
+.fg-whisk{stroke:var(--ink);stroke-width:2}
+.fg-box{fill:var(--blue-soft);stroke:var(--blue-deep);stroke-width:2}
+.fg-med{stroke:var(--orange);stroke-width:3.5}
+.fg-bar{fill:var(--blue)}
+.fg-poly{fill:var(--blue-soft);stroke:var(--blue-deep);stroke-width:2;fill-opacity:.9}
+.fg-dash{stroke:var(--orange);stroke-width:2.2;stroke-dasharray:6 4;fill:none}
+.fg-seg{stroke:var(--blue-deep);stroke-width:2.5}
+.fg-pt{fill:var(--blue-deep)}
+.fg-mid{fill:var(--orange)}
+.fg-yes{fill:var(--green)}
+.fg-no{fill:var(--red)}
+.fg-pl{fill:var(--ink);font:700 13px 'Atkinson Hyperlegible',system-ui,sans-serif}
+
+/* practice */
+.dots{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.dot{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:15px;padding:0}
+.dot:hover{border-color:var(--blue-deep)}
+.dot.cur{box-shadow:0 0 0 3px var(--blue)}
+.dot.ok{background:var(--green);border-color:var(--green);color:var(--on-fill)}
+.dot.retry{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+.dot.rev{background:var(--orange);border-color:var(--orange);color:var(--on-fill)}
+.dot.tried{border-color:var(--orange);color:var(--orange-deep)}
+.legend{font-size:14px;color:var(--muted);margin:-6px 0 18px}
+.qcard{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:22px 24px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:15px;margin-bottom:10px}
+.qprompt{font-size:19px;max-width:62ch;margin:0 0 6px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;margin:9px 0;cursor:pointer;background:var(--surface);max-width:620px}
+.opt:hover{border-color:var(--blue)}
+.opt input{margin-top:6px;accent-color:var(--blue-deep);width:18px;height:18px;flex:none}
+.opt.sel{border-color:var(--blue-deep);background:var(--blue-soft)}
+.opt.bad{border-color:var(--red);background:var(--red-soft)}
+.opt.good{border-color:var(--green);background:var(--green-soft)}
+.numrow{display:flex;gap:10px;align-items:center;margin:14px 0}
+.numrow input{font:inherit;width:190px;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);min-height:46px}
+.numrow input:disabled{opacity:.8}
+.qt{border-collapse:collapse;margin:12px 0;width:100%;max-width:640px}
+.qt th,.qt td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.qt th{font-weight:700;color:var(--muted);font-size:15px}
+.qt select{font:inherit;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-height:42px;max-width:100%}
+.qt tr.good td{background:var(--green-soft)}
+.qt tr.bad td{background:var(--red-soft)}
+.qt .st{font-size:14px;font-weight:700}
+.conf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+.conf .l{font-weight:700;margin-right:4px}
+.conf button{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:7px 16px;min-height:40px}
+.conf button:hover{border-color:var(--blue-deep)}
+.conf button.on{background:var(--btn-bg);color:var(--btn-ink);border-color:var(--btn-bg);font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hintbox,.fb,.sol{border-radius:9px;padding:13px 16px;margin-top:14px;max-width:68ch}
+.hintbox{background:var(--orange-soft);border:1.5px solid var(--orange)}
+.fb{border:1.5px solid}
+.fb.ok{background:var(--green-soft);border-color:var(--green)}
+.fb.no{background:var(--red-soft);border-color:var(--red)}
+.fb.info{background:var(--blue-soft);border-color:var(--blue)}
+.fb:focus{outline:none}
+.sol{background:var(--blue-soft);border:1.5px solid var(--blue)}
+.fb p,.sol p{margin:6px 0 0}
+.qnav{display:flex;justify-content:space-between;gap:10px;margin-top:20px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;padding:0;color:var(--blue-deep);font-weight:700;text-decoration:underline;min-height:0}
+
+/* progress */
+.pgrid{display:grid;gap:14px;margin:16px 0 26px}
+.prow{background:var(--surface);border:1.5px solid var(--line);border-left:7px solid var(--tabc,var(--blue));border-radius:10px;padding:16px 18px}
+.prow h3{font-size:19px;margin-bottom:8px}
+.pl{margin:10px 0 0;padding-left:20px}
+.pl li{margin:6px 0}
+.panel{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.panel h2{font-size:21px;margin-bottom:6px}
+.panel p{margin:6px 0;max-width:66ch}
+.studyrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line)}
+.studyrow:first-of-type{border-top:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:520px){.wrap{padding:12px 14px 60px}.qcard{padding:18px 16px}.topic{padding:18px 16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <button class="brand" data-act="home">Math 1 Midterm Review</button>
+    <nav class="nav" aria-label="Main">
+      <button data-act="home" id="nav-home">Topics</button>
+      <button data-act="progress" id="nav-progress">My progress</button>
+    </nav>
+  </header>
+  <main id="app"></main>
+  <noscript>This review needs JavaScript turned on to work.</noscript>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+var F = function (n, d) { return '<span class="frac"><span class="n">' + n + '</span><span class="d">' + d + '</span></span>'; };
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+function parseNum(s) {
+  s = String(s).trim().replace(/\u2212/g, '-').replace(/\s+/g, '').replace(/,/g, '').replace(/^\$/, '').replace(/^[a-z]=/i, '');
+  var m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/);
+  if (m) { var d = parseFloat(m[2]); if (d === 0) return NaN; return parseFloat(m[1]) / d; }
+  if (/^-?\d*\.?\d+$/.test(s)) return parseFloat(s);
+  return NaN;
+}
+
+/* ---------- figures ---------- */
+function boxplotSVG(items, lo, hi, step, xLabel, aria) {
+  var W = 560, left = 74, right = 22, rowH = 46, top = 10, axisH = 46;
+  var H = top + items.length * rowH + axisH;
+  function sx(v) { return left + (v - lo) / (hi - lo) * (W - left - right); }
+  var s = '<svg class="fig" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(aria) + '">';
+  for (var v = lo; v <= hi + 1e-9; v += step) {
+    var x = sx(v);
+    s += '<line class="fg-grid" x1="' + x + '" y1="' + top + '" x2="' + x + '" y2="' + (H - axisH + 4) + '"/>';
+    s += '<text class="fg-txt" x="' + x + '" y="' + (H - axisH + 22) + '" text-anchor="middle">' + v + '</text>';
+  }
+  s += '<text class="fg-txt" x="' + ((left + W - right) / 2) + '" y="' + (H - 6) + '" text-anchor="middle">' + xLabel + '</text>';
+  items.forEach(function (it, i) {
+    var y = top + i * rowH + rowH / 2;
+    s += '<text class="fg-txt fg-lab" x="' + (left - 10) + '" y="' + (y + 5) + '" text-anchor="end">' + it.label + '</text>';
+    s += '<line class="fg-whisk" x1="' + sx(it.min) + '" y1="' + y + '" x2="' + sx(it.q1) + '" y2="' + y + '"/>';
+    s += '<line class="fg-whisk" x1="' + sx(it.q3) + '" y1="' + y + '" x2="' + sx(it.max) + '" y2="' + y + '"/>';
+    s += '<line class="fg-whisk" x1="' + sx(it.min) + '" y1="' + (y - 8) + '" x2="' + sx(it.min) + '" y2="' + (y + 8) + '"/>';
+    s += '<line class="fg-whisk" x1="' + sx(it.max) + '" y1="' + (y - 8) + '" x2="' + sx(it.max) + '" y2="' + (y + 8) + '"/>';
+    s += '<rect class="fg-box" x="' + sx(it.q1) + '" y="' + (y - 14) + '" width="' + (sx(it.q3) - sx(it.q1)) + '" height="28" rx="2"/>';
+    s += '<line class="fg-med" x1="' + sx(it.med) + '" y1="' + (y - 14) + '" x2="' + sx(it.med) + '" y2="' + (y + 14) + '"/>';
+  });
+  return s + '</svg>';
+}
+
+function histSVG(h, xLabel, aria) {
+  var W = 300, Ht = 170, pad = 14, base = Ht - 34, n = h.length, bw = (W - 2 * pad) / n, mx = Math.max.apply(null, h);
+  var s = '<svg class="fig hist" viewBox="0 0 ' + W + ' ' + Ht + '" role="img" aria-label="' + esc(aria) + '">';
+  h.forEach(function (v, i) {
+    var bh = v / mx * (base - 14);
+    s += '<rect class="fg-bar" x="' + (pad + i * bw + 1.5) + '" y="' + (base - bh) + '" width="' + (bw - 3) + '" height="' + bh + '" rx="1.5"/>';
+  });
+  s += '<line class="fg-axis" x1="' + pad + '" y1="' + base + '" x2="' + (W - pad) + '" y2="' + base + '"/>';
+  s += '<text class="fg-txt" x="' + (W / 2) + '" y="' + (Ht - 10) + '" text-anchor="middle">' + xLabel + '</text></svg>';
+  return s;
+}
+
+function regionSVG() {
+  var W = 520, H = 262, l = 54, b = 44, t = 14, r = 16;
+  function px(v) { return l + v / 34 * (W - l - r); }
+  function py(v) { return H - b - v / 16 * (H - b - t); }
+  var s = '<svg class="fig" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Shaded region where x plus y is at most 30, y is at most 12, and x and y are not negative. The point (20, 8) is inside the region. The point (20, 12) is outside.">';
+  [0, 10, 20, 30].forEach(function (v) {
+    s += '<line class="fg-grid" x1="' + px(v) + '" y1="' + py(0) + '" x2="' + px(v) + '" y2="' + py(16) + '"/>';
+    s += '<text class="fg-txt" x="' + px(v) + '" y="' + (py(0) + 18) + '" text-anchor="middle">' + v + '</text>';
+  });
+  [0, 4, 8, 12].forEach(function (v) {
+    s += '<line class="fg-grid" x1="' + px(0) + '" y1="' + py(v) + '" x2="' + px(34) + '" y2="' + py(v) + '"/>';
+    s += '<text class="fg-txt" x="' + (px(0) - 8) + '" y="' + (py(v) + 4) + '" text-anchor="end">' + v + '</text>';
+  });
+  s += '<polygon class="fg-poly" points="' + px(0) + ',' + py(0) + ' ' + px(30) + ',' + py(0) + ' ' + px(18) + ',' + py(12) + ' ' + px(0) + ',' + py(12) + '"/>';
+  s += '<line class="fg-axis" x1="' + px(0) + '" y1="' + py(0) + '" x2="' + px(34) + '" y2="' + py(0) + '"/>';
+  s += '<line class="fg-axis" x1="' + px(0) + '" y1="' + py(0) + '" x2="' + px(0) + '" y2="' + py(16) + '"/>';
+  s += '<line class="fg-dash" x1="' + px(14) + '" y1="' + py(16) + '" x2="' + px(30) + '" y2="' + py(0) + '"/>';
+  s += '<line class="fg-dash" x1="' + px(0) + '" y1="' + py(12) + '" x2="' + px(34) + '" y2="' + py(12) + '"/>';
+  s += '<text class="fg-pl" x="' + (px(23.5)) + '" y="' + (py(8.5)) + '">x + y = 30</text>';
+  s += '<text class="fg-pl" x="' + (px(23)) + '" y="' + (py(12) - 7) + '">y = 12</text>';
+  s += '<circle class="fg-yes" cx="' + px(20) + '" cy="' + py(8) + '" r="5.5"/><text class="fg-pl" x="' + (px(20) - 8) + '" y="' + (py(8) + 17) + '" text-anchor="end">(20, 8) inside</text>';
+  s += '<circle class="fg-no" cx="' + px(20) + '" cy="' + py(12) + '" r="5.5"/><text class="fg-pl" x="' + (px(20) - 8) + '" y="' + (py(12) - 9) + '" text-anchor="end">(20, 12) outside</text>';
+  s += '<text class="fg-txt" x="' + ((px(0) + px(34)) / 2) + '" y="' + (H - 6) + '" text-anchor="middle">mugs, x</text>';
+  s += '<text class="fg-txt" transform="translate(14 ' + ((py(0) + py(16)) / 2) + ') rotate(-90)" text-anchor="middle">plates, y</text>';
+  return s + '</svg>';
+}
+
+function heroSVG() {
+  var s = '<svg class="hero-svg" viewBox="0 0 260 200" role="img" aria-label="A coordinate plane with a segment from point A to point B and its midpoint M.">';
+  for (var i = 0; i <= 13; i++) s += '<line class="fg-grid" x1="' + (i * 20) + '" y1="0" x2="' + (i * 20) + '" y2="200"/>';
+  for (var j = 0; j <= 10; j++) s += '<line class="fg-grid" x1="0" y1="' + (j * 20) + '" x2="260" y2="' + (j * 20) + '"/>';
+  s += '<line class="fg-axis" x1="0" y1="100" x2="260" y2="100"/><line class="fg-axis" x1="120" y1="0" x2="120" y2="200"/>';
+  s += '<line class="fg-seg" x1="20" y1="140" x2="180" y2="20"/>';
+  s += '<circle class="fg-pt" cx="20" cy="140" r="6"/><circle class="fg-pt" cx="180" cy="20" r="6"/><circle class="fg-mid" cx="100" cy="80" r="7"/>';
+  s += '<text class="fg-pl" x="28" y="160">A(\u22125, \u22122)</text><text class="fg-pl" x="150" y="14">B(3, 4)</text><text class="fg-pl" x="92" y="68" text-anchor="end">M(\u22121, 1)</text>';
+  return s + '</svg>';
+}
+
+var FIGS = {
+  boxes: function () {
+    return boxplotSVG([
+      { label: 'Class A', min: 1, q1: 3, med: 5, q3: 7, max: 9 },
+      { label: 'Class B', min: 2, q1: 4, med: 5, q3: 6, max: 8 },
+      { label: 'Class C', min: 0, q1: 2, med: 5, q3: 8, max: 10 },
+      { label: 'Class D', min: 3, q1: 4.5, med: 5, q3: 5.5, max: 7 }
+    ], 0, 10, 1, 'Hours spent studying per unit', 'Four box plots, all with a median of 5 hours. Class A runs from 1 to 9 with a box from 3 to 7. Class B runs from 2 to 8 with a box from 4 to 6. Class C runs from 0 to 10 with a box from 2 to 8. Class D runs from 3 to 7 with a box from 4.5 to 5.5.');
+  },
+  histR: function () { return histSVG([4, 14, 20, 12, 7, 4, 2, 1, 0, 0, 1], 'Household income (thousands of dollars)', 'Histogram with most bars on the left and one separate bar far to the right.'); },
+  histL: function () { return histSVG([1, 0, 0, 1, 2, 4, 7, 12, 20, 14, 4], 'Quiz score (points)', 'Histogram with most bars on the right and one separate bar far to the left.'); },
+  histS: function () { return histSVG([1, 3, 7, 12, 16, 12, 7, 3, 1], 'Height (inches)', 'Bell-shaped histogram with balanced sides and no separate bars.'); },
+  region: regionSVG
+};
+
+/* ---------- content ---------- */
+var SECTIONS = [
+  /* ===== 1. Linear ===== */
+  {
+    id: 'linear', color: 'var(--blue)',
+    title: 'Coordinate geometry and linear equations',
+    short: 'Linear equations',
+    blurb: 'Midpoints, slope, parallel and perpendicular lines, intercepts, solving for a variable, and linear models.',
+    topics: [
+      { id: 'midpoint', title: 'Midpoints and missing endpoints', html:
+        '<p>The midpoint is the average of the endpoints, one coordinate at a time: M = (' + F('x<sub>1</sub> + x<sub>2</sub>', 2) + ', ' + F('y<sub>1</sub> + y<sub>2</sub>', 2) + ').</p>' +
+        '<p>To find a missing endpoint, work backward. Set each coordinate average equal to the midpoint’s coordinate and solve for the unknown.</p>' +
+        '<div class="eg"><b>Worked example.</b> The midpoint of PQ is (7, \u22122) and P is (3, 4). Find Q.<br>x: ' + F('3 + x', 2) + ' = 7, so x = 11.<br>y: ' + F('4 + y', 2) + ' = \u22122, so y = \u22128.<br>Q = (11, \u22128).</div>' +
+        '<div class="watch"><b>Watch for.</b> Subtracting the midpoint from the endpoint, or averaging the endpoint with the midpoint. Both give a point, but not the other endpoint. To check, average your answer with the known endpoint. You should land on the midpoint.</div>' },
+      { id: 'slope', title: 'Slope, parallel lines, and perpendicular lines', html:
+        '<p>Slope is rise over run. From standard form Ax + By = C, the slope is \u2212A/B. You can also solve for y and read the number multiplying x.</p>' +
+        '<p>Parallel lines have the <b>same</b> slope. Perpendicular lines have slopes that are <b>negative reciprocals</b>: flip the fraction <i>and</i> change the sign.</p>' +
+        '<div class="eg"><b>Worked example.</b> Take 2x + 5y = 10. Then 5y = \u22122x + 10, so y = \u2212' + F(2, 5) + 'x + 2.<br>Slope: \u2212' + F(2, 5) + '. Parallel slope: \u2212' + F(2, 5) + '. Perpendicular slope: ' + F(5, 2) + '.</div>' +
+        '<div class="watch"><b>Watch for.</b> Flipping the fraction but keeping the sign, or changing the sign but not flipping. A quick test: the slopes of perpendicular lines multiply to \u22121.</div>' },
+      { id: 'forms', title: 'Forms of a line and finding intercepts', html:
+        '<p>Slope-intercept form, y = mx + b, shows the slope m and the y-intercept b. Point-slope form, y \u2212 y<sub>1</sub> = m(x \u2212 x<sub>1</sub>), shows the slope m and a point (x<sub>1</sub>, y<sub>1</sub>) on the line. Standard form is Ax + By = C.</p>' +
+        '<p>For intercepts, set x = 0 to find the y-intercept and set y = 0 to find the x-intercept. Intercepts are points, so write them as (0, b) and (a, 0).</p>' +
+        '<div class="eg"><b>Worked example: parallel line through a point.</b> Write the line parallel to y = 2x + 1 that passes through (3, 4). Keep the slope 2 and use the new point: y \u2212 4 = 2(x \u2212 3), which simplifies to y = 2x \u2212 2.</div>' +
+        '<div class="eg"><b>Worked example: intercepts.</b> For y + 2 = ' + F(1, 2) + '(x \u2212 4):<br>y-intercept: let x = 0, so y + 2 = \u22122 and y = \u22124. The point is (0, \u22124).<br>x-intercept: let y = 0, so 2 = ' + F(1, 2) + '(x \u2212 4), then x \u2212 4 = 4 and x = 8. The point is (8, 0).</div>' +
+        '<div class="watch"><b>Watch for.</b> The signs in point-slope form. In y + 2 = \u2026(x \u2212 4), the point is (4, \u22122), not (\u22124, 2). That point is on the line, but it is not an intercept.</div>' },
+      { id: 'solvefor', title: 'Solving for a variable', html:
+        '<p>Treat every other letter like a number. Undo operations in reverse order, and do the same thing to <b>every term</b> on both sides.</p>' +
+        '<div class="eg"><b>Worked example.</b> Solve 6x + 3y = 18 for y.<br>3y = \u22126x + 18<br>y = \u22122x + 6</div>' +
+        '<div class="eg"><b>Worked example: solving for x.</b> Solve y + 1 = ' + F(2, 3) + '(x \u2212 3) for x. Multiply both sides by ' + F(3, 2) + ': ' + F(3, 2) + '(y + 1) = x \u2212 3. Then x = ' + F(3, 2) + 'y + ' + F(9, 2) + '.</div>' +
+        '<div class="watch"><b>Watch for.</b> Dividing only one term, and dividing by a negative number. When you divide by \u22124, <i>every</i> sign changes.</div>' },
+      { id: 'model', title: 'Linear models from a story', html:
+        '<p>A linear model has the form (starting amount) + (rate) \u00d7 (time). The starting amount is the constant, the y-intercept. The rate is the slope, and it is negative when the amount goes down.</p>' +
+        '<div class="eg"><b>Worked example.</b> A gift card starts with $600 and $40 is spent each month, so B = 600 \u2212 40m. When is $200 left? Solve 600 \u2212 40m = 200, so 40m = 400 and m = 10 months.</div>' +
+        '<div class="watch"><b>Watch for.</b> Swapping the starting amount and the rate, and leaving units off the final answer. The question asks “when,” so the answer is a time.</div>' }
+    ],
+    problems: [
+      { id: 'L1', topic: 'midpoint', type: 'mc',
+        prompt: 'The midpoint of segment <b>CD</b> is (4, 1). Endpoint <b>C</b> is (\u22122, 5). What are the coordinates of <b>D</b>?',
+        options: [
+          { h: '(10, \u22123)', ok: true },
+          { h: '(6, \u22124)', why: 'That is the midpoint minus C. The midpoint is only halfway, so D is the same distance again past the midpoint.' },
+          { h: '(1, 3)', why: 'That is the average of C and the midpoint, which is a point between them, not the other endpoint.' },
+          { h: '(2, 6)', why: 'That is C plus the midpoint. Set up (\u22122 + x) \u00f7 2 = 4 for the x-coordinates instead.' }
+        ],
+        hint: 'Write ' + F('\u22122 + x', 2) + ' = 4 for the x-coordinates, then do the same for y.',
+        sol: 'x: ' + F('\u22122 + x', 2) + ' = 4, so x = 10. y: ' + F('5 + y', 2) + ' = 1, so y = \u22123. D = (10, \u22123). Check: the average of (\u22122, 5) and (10, \u22123) is (4, 1).' },
+      { id: 'L2', topic: 'slope', type: 'num',
+        prompt: 'Find the slope of the line 5x \u2212 2y = 8. Decimals and fractions (like 5/2) are both fine.',
+        answer: 2.5, tol: 0.001,
+        wrong: [
+          { t: function (v) { return Math.abs(v + 2.5) < 0.001; }, why: 'Check the signs. Solving gives \u22122y = \u22125x + 8, and dividing every term by \u22122 changes every sign.' },
+          { t: function (v) { return Math.abs(Math.abs(v) - 0.4) < 0.001; }, why: 'That looks like the reciprocal. Slope is the coefficient of x divided by the coefficient of y (with a sign change), not the other way around.' },
+          { t: function (v) { return Math.abs(v - 5) < 0.001; }, why: 'Five is the coefficient of x in standard form. You still need to solve for y, or use \u2212A/B.' }
+        ],
+        generic: 'Solve for y first, so the equation looks like y = mx + b, then read m.',
+        hint: 'Get y by itself: subtract 5x from both sides, then divide every term by \u22122.',
+        sol: '\u22122y = \u22125x + 8, so y = 2.5x \u2212 4. The slope is ' + F(5, 2) + ' = 2.5. Shortcut: \u2212A/B = \u22125/\u22122.' },
+      { id: 'L3', topic: 'slope', type: 'mc',
+        prompt: 'What is the slope of a line that is <b>perpendicular</b> to 4x + 3y = 12?',
+        options: [
+          { h: F(3, 4), ok: true },
+          { h: '\u2212' + F(3, 4), why: 'You flipped the fraction but kept the negative sign. Perpendicular slopes are negative reciprocals, so the sign changes too.' },
+          { h: '\u2212' + F(4, 3), why: 'That is the slope of the original line. Parallel lines share it, but perpendicular lines do not.' },
+          { h: F(4, 3), why: 'You changed the sign but did not flip the fraction.' }
+        ],
+        hint: 'First find the slope of 4x + 3y = 12 by solving for y.',
+        sol: '3y = \u22124x + 12, so y = \u2212' + F(4, 3) + 'x + 4. The slope is \u2212' + F(4, 3) + '. Flip it to get \u2212' + F(3, 4) + ', then change the sign: ' + F(3, 4) + '. Check: \u2212' + F(4, 3) + ' \u00d7 ' + F(3, 4) + ' = \u22121.' },
+      { id: 'L4', topic: 'forms', type: 'mc',
+        prompt: 'Which equation is the line <b>parallel</b> to y = ' + F(3, 4) + 'x + 2 that passes through (8, \u22121)?',
+        options: [
+          { h: 'y = ' + F(3, 4) + 'x \u2212 7', ok: true },
+          { h: 'y = \u2212' + F(4, 3) + 'x + ' + F(29, 3), why: 'That line goes through (8, \u22121), but its slope is the negative reciprocal. That makes it perpendicular, not parallel.' },
+          { h: 'y = ' + F(3, 4) + 'x \u2212 1', why: 'You used the y-coordinate of the point as the y-intercept. Plug the point in to find b: \u22121 = ' + F(3, 4) + '(8) + b.' },
+          { h: 'y = ' + F(3, 4) + 'x + 2', why: 'That is the original line. It has the right slope, but (8, \u22121) is not on it.' }
+        ],
+        hint: 'Parallel lines have the same slope. Then use point-slope form with (8, \u22121).',
+        sol: 'The slope is ' + F(3, 4) + '. Plug in (8, \u22121): \u22121 = ' + F(3, 4) + '(8) + b = 6 + b, so b = \u22127. The line is y = ' + F(3, 4) + 'x \u2212 7.' },
+      { id: 'L5', topic: 'forms', type: 'mc',
+        prompt: 'For the line y \u2212 1 = 2(x + 3), which pair gives the correct intercepts?',
+        options: [
+          { h: 'x-intercept (\u22123.5, 0) and y-intercept (0, 7)', ok: true },
+          { h: 'x-intercept (\u22123, 0) and y-intercept (0, 1)', why: 'Those numbers come from the equation’s point, (\u22123, 1). That point is on the line, but it is not an intercept.' },
+          { h: 'x-intercept (3.5, 0) and y-intercept (0, 7)', why: 'Look at the sign on the x-intercept. With y = 0: \u22121 = 2(x + 3), so x + 3 = \u22120.5.' },
+          { h: 'x-intercept (0, \u22123.5) and y-intercept (7, 0)', why: 'The coordinates are swapped. An x-intercept has y = 0, so it looks like (a, 0).' }
+        ],
+        hint: 'Let x = 0 for the y-intercept. Let y = 0 for the x-intercept.',
+        sol: 'y-intercept: let x = 0, so y \u2212 1 = 2(3) = 6 and y = 7. x-intercept: let y = 0, so \u22121 = 2(x + 3), then x + 3 = \u22120.5 and x = \u22123.5.' },
+      { id: 'L6', topic: 'solvefor', type: 'mc',
+        prompt: 'Solve 3x \u2212 4y = 24 for y.',
+        options: [
+          { h: 'y = ' + F(3, 4) + 'x \u2212 6', ok: true },
+          { h: 'y = ' + F(3, 4) + 'x + 6', why: 'Check the constant. After subtracting 3x you have \u22124y = \u22123x + 24, and 24 \u00f7 (\u22124) is \u22126.' },
+          { h: 'y = ' + F(3, 4) + 'x + 24', why: 'You divided the x-term by \u22124 but not the 24. Divide every term.' },
+          { h: 'y = \u2212' + F(3, 4) + 'x + 6', why: 'You divided by 4, but the coefficient of y is \u22124. Dividing by a negative changes every sign.' }
+        ],
+        hint: 'Subtract 3x from both sides first, then divide every term by \u22124.',
+        sol: 'Subtract 3x: \u22124y = \u22123x + 24. Divide every term by \u22124: y = ' + F(3, 4) + 'x \u2212 6.' },
+      { id: 'L7', topic: 'model', type: 'mc',
+        prompt: 'Maya has $900 in savings and takes out $45 every week. Which equation gives her balance, B, after w weeks?',
+        options: [
+          { h: 'B = 900 \u2212 45w', ok: true },
+          { h: 'B = 45w \u2212 900', why: 'That reverses the story. The $900 is where she starts, and the $45 is taken away each week.' },
+          { h: 'B = 900 + 45w', why: 'The balance is going down, not up. Money is being taken out.' },
+          { h: 'B = 45 \u2212 900w', why: 'The starting amount is the constant. The weekly change gets multiplied by w.' }
+        ],
+        hint: 'Start amount, then subtract the rate times the number of weeks.',
+        sol: 'She starts with 900 and loses 45 each week: B = 900 \u2212 45w.' },
+      { id: 'L8', topic: 'model', type: 'num',
+        prompt: 'Using B = 900 \u2212 45w, after how many weeks will Maya have exactly $270 left?',
+        answer: 14, tol: 0.001, unit: 'weeks',
+        wrong: [
+          { t: function (v) { return Math.abs(v - 630) < 0.5; }, why: '630 is how much she has spent in total (900 \u2212 270). Divide by $45 per week to get the number of weeks.' },
+          { t: function (v) { return Math.abs(v - 6) < 0.001; }, why: 'Set the balance equal to 270 and solve: 900 \u2212 45w = 270. Dividing 270 by 45 skips the starting amount.' }
+        ],
+        generic: 'Set 900 \u2212 45w equal to 270, then solve for w.',
+        hint: 'Solve 900 \u2212 45w = 270.',
+        sol: '900 \u2212 45w = 270, so \u221245w = \u2212630 and w = 14 weeks.' }
+    ]
+  },
+
+  /* ===== 2. Systems and inequalities ===== */
+  {
+    id: 'systems', color: 'var(--orange)',
+    title: 'Systems and inequalities',
+    short: 'Systems and inequalities',
+    blurb: 'Solving systems, catching errors, solving and writing inequalities, and feasible regions.',
+    topics: [
+      { id: 'sys-solve', title: 'Solving systems of equations', html:
+        '<p>The solution to a system is the point where the lines cross, so it is an <b>ordered pair</b> (x, y). Use substitution when a variable is already alone or easy to isolate. Use elimination when the coefficients line up or can be made to cancel.</p>' +
+        '<div class="eg"><b>Worked example: substitution.</b> y = 2x \u2212 1 and 3x + y = 14.<br>3x + (2x \u2212 1) = 14, so 5x = 15 and x = 3.<br>y = 2(3) \u2212 1 = 5. Solution: (3, 5).</div>' +
+        '<div class="eg"><b>Worked example: elimination.</b> 2x + 3y = 12 and 4x \u2212 3y = 6.<br>Add the equations: 6x = 18, so x = 3.<br>Then 2(3) + 3y = 12, so y = 2. Solution: (3, 2).</div>' +
+        '<div class="watch"><b>Watch for.</b> Stopping after you find x, and sign mistakes when you subtract equations. Always check the pair in <i>both</i> original equations. Parallel lines (same slope, different intercepts) mean no solution.</div>' },
+      { id: 'error-check', title: 'Finding errors in worked solutions', html:
+        '<p>Redo the work one line at a time. The error is the first line that does not follow from the line before it. The usual suspects are a negative that was not distributed, a term moved across the equals sign without changing its sign, and unlike terms combined.</p>' +
+        '<div class="eg"><b>Worked example.</b> Substitute y = x + 3 into 5x \u2212 y = 7.<br>Correct: 5x \u2212 (x + 3) = 7, so 5x \u2212 x \u2212 3 = 7, then 4x = 10 and x = 2.5.<br>A common slip: writing 5x \u2212 x <b>+</b> 3 = 7. The minus sign has to reach both terms inside the parentheses.</div>' +
+        '<div class="watch"><b>Watch for.</b> Once you find the error, finish the problem correctly. Then plug your answer back in to prove it works.</div>' },
+      { id: 'ineq-solve', title: 'Solving inequalities', html:
+        '<p>Solve an inequality like an equation, with one rule added: <b>multiplying or dividing by a negative number flips the inequality sign</b>. With fractions, multiply by the least common denominator. That number is positive, so nothing flips.</p>' +
+        '<div class="eg"><b>Worked example.</b> ' + F('x + 1', 2) + ' \u2264 ' + F('x', 3) + ' + 1. Multiply by 6: 3(x + 1) \u2264 2x + 6, so 3x + 3 \u2264 2x + 6 and x \u2264 3.</div>' +
+        '<div class="eg"><b>Worked example with a flip.</b> \u22122x + 5 &gt; 11. Subtract 5: \u22122x &gt; 6. Divide by \u22122 and flip: x &lt; \u22123.</div>' +
+        '<div class="watch"><b>Watch for.</b> Flipping when you should not (multiplying by a positive denominator), and forgetting to flip when you divide by a negative. You can test one number from your answer in the original inequality.</div>' },
+      { id: 'ineq-write', title: 'Writing inequalities from a situation', html:
+        '<p>Translate the words first: “at most” and “no more than” mean \u2264. “At least” and “no less than” mean \u2265. “More than” means &gt; and “fewer than” means &lt;.</p>' +
+        '<p>For profit, remember that profit = revenue \u2212 costs. Costs include fixed costs, like renting a tent, and per-item costs, like printing.</p>' +
+        '<div class="eg"><b>Worked example.</b> A club sells shirts for $10 each. Each costs $3 to print, and a booth costs $50. To profit at least $100 from s shirts: 10s \u2212 3s \u2212 50 \u2265 100, which simplifies to 7s \u2212 50 \u2265 100.</div>' +
+        '<div class="watch"><b>Watch for.</b> Adding a cost instead of subtracting it, and leaving out the cost per item. If the answer is a count of items, round to a whole number in the direction that still satisfies the inequality.</div>' },
+      { id: 'feasible', title: 'Constraints and feasible regions', html:
+        '<p>Each limit in a story is an inequality. The <b>feasible region</b> is where every inequality is true at once. To test a point, plug it into every inequality. It has to work in all of them.</p>' +
+        '<div class="eg"><b>Worked example.</b> Pat makes mugs (x) and plates (y). At most 30 items in total: x + y \u2264 30. At most 12 plates: y \u2264 12. Neither can be negative: x \u2265 0 and y \u2265 0. The point (20, 8) works in all four. The point (20, 12) breaks the first: 20 + 12 = 32.' + FIGS.region() + '</div>' +
+        '<div class="watch"><b>Watch for.</b> Using &gt; where the story allows zero. Pat can make zero mugs, so the constraint is x \u2265 0, not x &gt; 0.</div>' }
+    ],
+    problems: [
+      { id: 'S1', topic: 'sys-solve', type: 'mc',
+        prompt: 'Solve the system: 2x + y = 7 and 3x \u2212 y = 8.',
+        options: [
+          { h: '(3, 1)', ok: true },
+          { h: '(1, 3)', why: 'The coordinates are swapped. A solution is written (x, y).' },
+          { h: '(3, \u22121)', why: 'Check it in the first equation: 2(3) + (\u22121) = 5, not 7.' },
+          { h: 'No solution', why: 'No solution happens when the lines are parallel. These slopes are \u22122 and 3, so the lines cross.' }
+        ],
+        hint: 'The y terms are +y and \u2212y. What happens if you add the equations?',
+        sol: 'Add the equations: 5x = 15, so x = 3. Then 2(3) + y = 7, so y = 1. Check the second equation: 3(3) \u2212 1 = 8.' },
+      { id: 'S2', topic: 'sys-solve', type: 'num',
+        prompt: 'Solve the system 3x + 2y = 16 and x \u2212 2y = 0. What is the value of <b>x</b>?',
+        answer: 4, tol: 0.001,
+        wrong: [
+          { t: function (v) { return Math.abs(v - 2) < 0.001; }, why: 'That is the y-value of the solution. The question asks for x.' }
+        ],
+        generic: 'Look for terms that cancel. The 2y and \u22122y will, if you add the equations.',
+        hint: 'Add the two equations so the y terms cancel.',
+        sol: 'Add: 4x = 16, so x = 4. Then 4 \u2212 2y = 0, so y = 2. The solution is (4, 2). Check: 3(4) + 2(2) = 16.' },
+      { id: 'S3', topic: 'error-check', type: 'mc',
+        prompt: 'A student substituted y = 3x \u2212 2 into 4x + y = 12. Where is the <b>first</b> error?' +
+          '<div class="work">Step 1: 4x + (3x \u2212 2) = 12<br>Step 2: 7x \u2212 2 = 12<br>Step 3: 7x = 10<br>Step 4: x = ' + F(10, 7) + '</div>',
+        options: [
+          { h: 'Step 3: the \u22122 should be moved by adding 2, giving 7x = 14', ok: true },
+          { h: 'Step 1: the substitution should be 4x \u2212 (3x \u2212 2) = 12', why: 'The original equation is 4x + y, so the plus sign stays. Step 1 is correct.' },
+          { h: 'Step 2: 4x + 3x should equal 12x', why: 'Like terms add coefficients: 4x + 3x = 7x. Step 2 is correct.' },
+          { h: 'Step 4: x should be ' + F(7, 10), why: 'Dividing 7x = 10 by 7 does give ' + F(10, 7) + '. The mistake happens before this line.' }
+        ],
+        hint: 'Check each line against the one before it. Which line does not follow?',
+        sol: 'Step 3 should <i>add</i> 2 to both sides: 7x = 14, so x = 2. Then y = 3(2) \u2212 2 = 4. The solution is (2, 4). Check: 4(2) + 4 = 12.' },
+      { id: 'S4', topic: 'ineq-solve', type: 'mc',
+        prompt: 'Solve: ' + F('x \u2212 2', 3) + ' \u2265 ' + F('x', 2) + ' + 1',
+        options: [
+          { h: 'x \u2264 \u221210', ok: true },
+          { h: 'x \u2265 \u221210', why: 'You forgot to flip the inequality when you divided by \u22121.' },
+          { h: 'x \u2264 10', why: 'Check the signs when combining numbers. \u22124 \u2212 6 is \u221210, not 10.' },
+          { h: 'x \u2265 10', why: 'Two slips here: a sign error with the numbers and a missing flip when dividing by a negative.' }
+        ],
+        hint: 'Multiply every term by 6 to clear the fractions. Does that flip the sign?',
+        sol: 'Multiply by 6 (positive, no flip): 2(x \u2212 2) \u2265 3x + 6, so 2x \u2212 4 \u2265 3x + 6 and \u2212x \u2265 10. Divide by \u22121 and flip: x \u2264 \u221210.' },
+      { id: 'S5', topic: 'ineq-write', type: 'mc',
+        prompt: 'The robotics club rents a tent for $60. Each shirt costs $3 to print and sells for $12. Which inequality says the club makes a profit of <b>at least</b> $200 from selling s shirts?',
+        options: [
+          { h: '12s \u2212 3s \u2212 60 \u2265 200', ok: true },
+          { h: '12s \u2212 3s + 60 \u2265 200', why: 'The tent is a cost, so it gets subtracted from the revenue, not added.' },
+          { h: '12s \u2212 60 \u2265 200', why: 'This leaves out the $3 printing cost for each shirt.' },
+          { h: '12s \u2212 3s \u2212 60 \u2264 200', why: '“At least” means \u2265. This inequality says at most $200.' }
+        ],
+        hint: 'Profit = revenue \u2212 costs. List the revenue and both costs.',
+        sol: 'Revenue is 12s. Costs are 3s + 60. Profit = 12s \u2212 (3s + 60) = 9s \u2212 60. “At least $200” gives 9s \u2212 60 \u2265 200.' },
+      { id: 'S6', topic: 'ineq-write', type: 'num',
+        prompt: 'Using 9s \u2212 60 \u2265 200, what is the <b>least whole number</b> of shirts the club must sell?',
+        answer: 29, tol: 0.001, unit: 'shirts',
+        wrong: [
+          { t: function (v) { return Math.abs(v - 28) < 0.001; }, why: 'Try 28 shirts: 9(28) \u2212 60 = 192, which is less than $200. Round up when the answer has to satisfy \u2265.' },
+          { t: function (v) { return Math.abs(v - 28.89) < 0.02; }, why: 'That is the value of s, but you cannot sell part of a shirt. Round to a whole number that still makes the inequality true.' },
+          { t: function (v) { return Math.abs(v - 260) < 0.5; }, why: 'That is 9s, not s. One more step: divide by 9.' }
+        ],
+        generic: 'Add 60 to both sides, divide by 9, then round to a whole number that still works.',
+        hint: 'Add 60 to both sides, then divide by 9. Think about rounding.',
+        sol: '9s \u2265 260, so s \u2265 28.89\u2026 Whole shirts only, and 28 is not enough (profit $192), so the least is 29 shirts.' },
+      { id: 'S7', topic: 'feasible', type: 'table',
+        prompt: 'Pat makes mugs (x) and plates (y) each week. Pat can make <b>at most 30 items in total</b>, and <b>at most 12 plates</b>. Mark each inequality as part of Pat’s constraints (Yes) or not (No).',
+        rows: [
+          { label: 'x + y \u2264 30', choices: ['Yes', 'No'], ans: 'Yes', why: 'At most 30 items in total is x + y \u2264 30.' },
+          { label: 'y \u2264 12', choices: ['Yes', 'No'], ans: 'Yes', why: 'At most 12 plates is y \u2264 12.' },
+          { label: 'y > 12', choices: ['Yes', 'No'], ans: 'No', why: '“At most 12” allows 12 or fewer, so y > 12 is the opposite.' },
+          { label: 'x \u2212 y \u2265 30', choices: ['Yes', 'No'], ans: 'No', why: 'The total number of items uses x + y, not x \u2212 y.' },
+          { label: 'x > 0', choices: ['Yes', 'No'], ans: 'No', why: 'Pat could make zero mugs, so zero must be allowed. The constraint is x \u2265 0.' },
+          { label: 'y \u2265 0', choices: ['Yes', 'No'], ans: 'Yes', why: 'Pat cannot make a negative number of plates, but zero is fine.' }
+        ],
+        hint: 'Translate “at most” into \u2264 first. Then ask whether zero should be allowed.' },
+      { id: 'S8', topic: 'feasible', type: 'mc',
+        prompt: 'Pat’s constraints are x + y \u2264 30, y \u2264 12, x \u2265 0, and y \u2265 0. Which number of mugs and plates, (x, y), is possible in one week?',
+        options: [
+          { h: '(20, 8)', ok: true },
+          { h: '(20, 12)', why: 'That is 32 items in total, and Pat can only make 30.' },
+          { h: '(10, 15)', why: 'That is 15 plates, and the limit is 12.' },
+          { h: '(\u22124, 10)', why: 'Pat cannot make a negative number of mugs.' }
+        ],
+        hint: 'Test each point in all four inequalities. It has to pass every one.',
+        sol: '(20, 8): 20 + 8 = 28 \u2264 30, 8 \u2264 12, and both are non-negative. It passes all four.', solFig: 'region' }
+    ]
+  },
+
+  /* ===== 3. Statistics ===== */
+  {
+    id: 'stats', color: 'var(--teal)',
+    title: 'One-variable statistics',
+    short: 'Statistics',
+    blurb: 'Median, mean, IQR, box plots and variability, shape, outliers, and describing data in context.',
+    topics: [
+      { id: 'center', title: 'Median and mean', html:
+        '<p>The <b>median</b> is the middle value of the ordered list. With an even number of values, average the two in the middle. The <b>mean</b> is the sum of the values divided by how many there are.</p>' +
+        '<div class="eg"><b>Worked example.</b> Data: 6, 9, 4, 12, 9. In order: 4, 6, 9, 9, 12. The median is 9. The mean is (6 + 9 + 4 + 12 + 9) \u00f7 5 = 40 \u00f7 5 = 8.</div>' +
+        '<div class="watch"><b>Watch for.</b> Finding the median before putting the data in order. Always sort first.</div>' },
+      { id: 'iqr', title: 'Quartiles and the interquartile range (IQR)', html:
+        '<p>The median splits the ordered data into a lower half and an upper half. Q1 is the median of the lower half. Q3 is the median of the upper half. IQR = Q3 \u2212 Q1.</p>' +
+        '<p>When the number of values is odd, <b>leave the median out</b> of both halves.</p>' +
+        '<div class="eg"><b>Worked example, odd count.</b> 3, 5, 8, 9, 12, 14, 20. The median is 9. Lower half 3, 5, 8 gives Q1 = 5. Upper half 12, 14, 20 gives Q3 = 14. IQR = 14 \u2212 5 = 9.</div>' +
+        '<div class="eg"><b>Worked example, even count.</b> 2, 4, 7, 9, 10, 15. The median is 8. Lower half 2, 4, 7 gives Q1 = 4. Upper half 9, 10, 15 gives Q3 = 10. IQR = 6.</div>' +
+        '<div class="watch"><b>Watch for.</b> Keeping the median in both halves when the count is odd, and mixing up the IQR (Q3 \u2212 Q1) with the range (max \u2212 min).</div>' },
+      { id: 'boxplots', title: 'Reading box plots and comparing variability', html:
+        '<p>A box plot shows the five-number summary: minimum, Q1, median, Q3, maximum. The box covers the middle 50% of the data and the line inside it marks the median. Each quarter of the data has the same number of values, even when the quarters look different in length.</p>' +
+        boxplotSVG([{ label: 'Quiz scores', min: 52, q1: 70, med: 78, q3: 88, max: 98 }], 50, 100, 10, 'Score', 'A box plot of quiz scores with minimum 52, Q1 70, median 78, Q3 88 and maximum 98.') +
+        '<p>For variability, compare the width of the boxes (IQR) and the length of the whole plot (range). A wider box means more spread out.</p>' +
+        '<div class="watch"><b>Watch for.</b> Comparing medians when the question asks about variability. Two plots can have the same median and very different spread.</div>' },
+      { id: 'shape', title: 'Shape, outliers, and choosing the best measures', html:
+        '<p>A tail pulls the mean toward it. In a skewed distribution, the mean moves toward the tail and the median stays closer to the bulk of the data.</p>' +
+        '<div class="trio">' +
+        histSVG([3, 10, 16, 12, 8, 5, 3, 2, 1], 'Skewed right: mean &gt; median', 'Histogram with a long tail to the right.') +
+        histSVG([1, 3, 7, 12, 16, 12, 7, 3, 1], 'Symmetric: mean \u2248 median', 'Bell-shaped histogram.') +
+        histSVG([1, 2, 3, 5, 8, 12, 16, 10, 3], 'Skewed left: mean &lt; median', 'Histogram with a long tail to the left.') +
+        '</div>' +
+        '<p>Outliers and skewed shapes pull on the mean and standard deviation. Use the <b>median and IQR</b> for those. For symmetric data with no outliers, the <b>mean and standard deviation</b> use all of the data and work well.</p>' +
+        '<div class="watch"><b>Watch for.</b> Naming the skew by where the peak is. Skew is named for the <i>tail</i>: a tail to the right means skewed right.</div>' },
+      { id: 'context', title: 'Describing statistics in context', html:
+        '<p>A good answer says what the number means for the data, with units, not just which formula it came from.</p>' +
+        '<div class="eg"><b>Median.</b> If the median study time is 3 hours, half of the students studied 3 hours or less, and half studied 3 hours or more.<br><b>Mean.</b> If everyone studied the same amount and the total stayed the same, each person would study the mean.<br><b>IQR.</b> If the IQR is 2 hours, the middle half of the students’ study times span 2 hours.</div>' +
+        '<div class="watch"><b>Watch for.</b> Answers like “the median is the middle number.” That describes how to find it, not what it tells you about the situation.</div>' }
+    ],
+    problems: [
+      { id: 'T1', topic: 'center', type: 'num',
+        prompt: 'Sam’s scores on six quizzes were 72, 85, 90, 78, 95, 88. What is the <b>median</b>?',
+        answer: 86.5, tol: 0.001,
+        wrong: [
+          { t: function (v) { return Math.abs(v - 84) < 0.001; }, why: 'It looks like you averaged the two middle numbers in the original order (90 and 78). Put the scores in order first.' },
+          { t: function (v) { return Math.abs(v - 85) < 0.001 || Math.abs(v - 88) < 0.001; }, why: 'With six values there are two middle values. The median is halfway between them.' }
+        ],
+        generic: 'Order the scores from least to greatest. With six values, average the two in the middle.',
+        hint: 'Sort the data first. Then find the middle.',
+        sol: 'In order: 72, 78, 85, 88, 90, 95. The two middle values are 85 and 88, so the median is (85 + 88) \u00f7 2 = 86.5.' },
+      { id: 'T2', topic: 'center', type: 'num',
+        prompt: 'For the same scores (72, 85, 90, 78, 95, 88), what is the <b>mean</b>? Round to the nearest hundredth.',
+        answer: 84.67, tol: 0.05,
+        wrong: [
+          { t: function (v) { return Math.abs(v - 101.6) < 0.1; }, why: 'You divided by 5. There are 6 scores.' }
+        ],
+        generic: 'Mean = sum \u00f7 number of values. Add all six scores, then divide by 6.',
+        hint: 'Add all six scores. Then divide by how many scores there are.',
+        sol: 'Sum: 72 + 85 + 90 + 78 + 95 + 88 = 508. Mean = 508 \u00f7 6 \u2248 84.67.' },
+      { id: 'T3', topic: 'iqr', type: 'num',
+        prompt: 'Find the <b>interquartile range</b> (IQR) of this data: 14, 20, 11, 18, 25.',
+        answer: 10, tol: 0.001,
+        wrong: [
+          { t: function (v) { return Math.abs(v - 6) < 0.001; }, why: 'It looks like the median stayed in both halves. With an odd number of values, leave the median out.' },
+          { t: function (v) { return Math.abs(v - 14) < 0.001; }, why: 'That is the range (max \u2212 min). The IQR is Q3 \u2212 Q1.' },
+          { t: function (v) { return Math.abs(v - 12.5) < 0.001 || Math.abs(v - 22.5) < 0.001; }, why: 'That is one of the quartiles. The IQR is Q3 \u2212 Q1, so you need both.' }
+        ],
+        generic: 'Order the data, find the median, leave it out, then find the median of each half.',
+        hint: 'Order the five values. The median is the middle one. Leave it out and find the median of each half.',
+        sol: 'In order: 11, 14, 18, 20, 25. The median is 18, so leave it out. Lower half 11, 14 gives Q1 = 12.5. Upper half 20, 25 gives Q3 = 22.5. IQR = 22.5 \u2212 12.5 = 10.' },
+      { id: 'T4', topic: 'context', type: 'mc',
+        prompt: 'The <b>median</b> of Sam’s six quiz scores is 86.5. Which statement describes what that tells you?',
+        options: [
+          { h: 'Half of Sam’s quiz scores are at or below 86.5, and half are at or above 86.5.', ok: true },
+          { h: 'The most common quiz score was 86.5.', why: 'That describes the mode. The median is about position in the ordered list.' },
+          { h: 'If Sam had scored the same on every quiz and kept the same total, each score would be 86.5.', why: 'That describes the mean, which for these scores is about 84.67.' },
+          { h: 'Sam scored 86.5 on most of the quizzes.', why: 'The median does not tell you how many scores equal it. In fact, no quiz was 86.5.' }
+        ],
+        hint: 'What does the median do to the ordered list?',
+        sol: 'The median is the middle of the ordered list, so half of the values fall on each side. With six scores, 86.5 sits halfway between the third (85) and fourth (88) values.' },
+      { id: 'T5', topic: 'boxplots', type: 'mc',
+        prompt: 'The box plots show the hours students studied per unit in four classes. List the classes from <b>least to greatest variability</b>.',
+        fig: 'boxes',
+        options: [
+          { h: 'D, B, A, C', ok: true },
+          { h: 'C, A, B, D', why: 'That is the order from greatest to least. Check which direction the question asks for.' },
+          { h: 'B, D, A, C', why: 'Class D has the narrowest box and the shortest whiskers, so it varies the least.' },
+          { h: 'A, B, C, D', why: 'That is just alphabetical order. Compare the width of each box.' }
+        ],
+        hint: 'All four medians are 5, so compare box widths (IQR) and the overall length.',
+        sol: 'The medians match, so look at spread. IQR (box width): D = 1, B = 2, A = 4, C = 6. The ranges give the same order: D = 4, B = 6, A = 8, C = 10.' },
+      { id: 'T6', topic: 'shape', type: 'table',
+        prompt: 'Household incomes in a town are shown in the histogram. Most households earn between about $30,000 and $90,000, and one household earns far more. Fill in the table.',
+        fig: 'histR',
+        rows: [
+          { label: 'Outliers?', choices: ['Yes', 'No'], ans: 'Yes', why: 'The far-right bar is separated from the rest of the data.' },
+          { label: 'Shape?', choices: ['Symmetric', 'Skewed right', 'Skewed left'], ans: 'Skewed right', why: 'The tail stretches toward the larger values.' },
+          { label: 'Mean compared to median?', choices: ['Mean > median', 'Mean < median', 'Mean \u2248 median'], ans: 'Mean > median', why: 'Very large values pull the mean up. The median barely moves.' },
+          { label: 'Best measure of center?', choices: ['Mean', 'Median'], ans: 'Median', why: 'With skew and outliers, the median resists the extreme values.' },
+          { label: 'Best measure of spread?', choices: ['Standard deviation', 'IQR'], ans: 'IQR', why: 'Standard deviation gets inflated by outliers. The IQR does not.' }
+        ],
+        hint: 'The tail points toward the unusual value. The mean follows the tail.' },
+      { id: 'T7', topic: 'shape', type: 'table',
+        prompt: 'Scores on a very easy quiz are shown in the histogram. Almost everyone scored high, and one student scored far lower. Fill in the table.',
+        fig: 'histL',
+        rows: [
+          { label: 'Outliers?', choices: ['Yes', 'No'], ans: 'Yes', why: 'The far-left bar is separated from the rest of the data.' },
+          { label: 'Shape?', choices: ['Symmetric', 'Skewed right', 'Skewed left'], ans: 'Skewed left', why: 'The tail stretches toward the smaller values.' },
+          { label: 'Mean compared to median?', choices: ['Mean > median', 'Mean < median', 'Mean \u2248 median'], ans: 'Mean < median', why: 'Very low values pull the mean down. The median barely moves.' },
+          { label: 'Best measure of center?', choices: ['Mean', 'Median'], ans: 'Median', why: 'With skew and outliers, the median is the better summary.' },
+          { label: 'Best measure of spread?', choices: ['Standard deviation', 'IQR'], ans: 'IQR', why: 'The IQR is not pulled around by the low outlier.' }
+        ],
+        hint: 'Name the skew by the tail, not by where most of the data is.' },
+      { id: 'T8', topic: 'shape', type: 'table',
+        prompt: 'The heights of students in one grade are shown in the histogram. The two sides of the peak look balanced. Fill in the table.',
+        fig: 'histS',
+        rows: [
+          { label: 'Outliers?', choices: ['Yes', 'No'], ans: 'No', why: 'No bars are separated from the rest of the data.' },
+          { label: 'Shape?', choices: ['Symmetric', 'Skewed right', 'Skewed left'], ans: 'Symmetric', why: 'The two sides mirror each other.' },
+          { label: 'Mean compared to median?', choices: ['Mean > median', 'Mean < median', 'Mean \u2248 median'], ans: 'Mean \u2248 median', why: 'With balanced data, neither side pulls the mean away from the median.' },
+          { label: 'Best measure of center?', choices: ['Mean', 'Median'], ans: 'Mean', why: 'With symmetric data and no outliers, the mean uses all of the data.' },
+          { label: 'Best measure of spread?', choices: ['Standard deviation', 'IQR'], ans: 'Standard deviation', why: 'Standard deviation pairs with the mean when data is symmetric.' }
+        ],
+        hint: 'Balanced sides, no separate bars. What does that say about the mean and median?' }
+    ]
+  }
+];
+
+/* build lookup tables and table-question solutions */
+var TOPIC = {}, PROB = {}, ORDER = {};
+SECTIONS.forEach(function (sec) {
+  sec.topics.forEach(function (t) { TOPIC[t.id] = { sec: sec, title: t.title }; });
+  sec.problems.forEach(function (p) {
+    PROB[p.id] = { sec: sec, p: p };
+    if (p.type === 'mc') ORDER[p.id] = shuffle(p.options.map(function (_, i) { return i; }));
+    if (p.type === 'table') {
+      p.sol = '<ul class="pl">' + p.rows.map(function (r) { return '<li><b>' + r.label + '</b> ' + r.ans + '. ' + r.why + '</li>'; }).join('') + '</ul>';
+    }
+  });
+});
+
+/* ---------- state ---------- */
+var KEY = 'm1-midterm-review-v1';
+var store = { p: {} };
+try { var raw = window.localStorage.getItem(KEY); if (raw) { var parsed = JSON.parse(raw); if (parsed && parsed.p) store = parsed; } } catch (e) { }
+function save() { try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { } }
+function blank() { return { att: 0, first: null, solved: false, rev: false, conf: null, hint: false }; }
+function get(id) { return store.p[id] || blank(); }
+function rec(id) { return store.p[id] || (store.p[id] = blank()); }
+var UI = {};
+function U(id) { return UI[id] || (UI[id] = { sel: null, txt: '', tab: {}, conf: null, hint: false, fb: null, msg: '', showSol: false }); }
+var v = { name: 'home', sec: null, tab: 'review', idx: 0, confirm: false };
+var app = document.getElementById('app');
+
+function secById(id) { return SECTIONS.filter(function (s) { return s.id === id; })[0]; }
+function counts(sec) {
+  var solved = 0, first = 0;
+  sec.problems.forEach(function (p) { var r = get(p.id); if (r.solved) solved++; if (r.first === true) first++; });
+  return { solved: solved, first: first, total: sec.problems.length };
+}
+
+/* ---------- views ---------- */
+function homeView() {
+  return '<section class="hero"><div>' +
+    '<h1>Get ready for the midterm</h1>' +
+    '<p class="lead">Pick a topic, skim the quick review, then practice. Every answer comes with feedback that explains what went wrong, not just that it did.</p>' +
+    '<button class="btn primary" data-act="open" data-sec="linear" data-tab="review">Start with linear equations</button>' +
+    '</div><div>' + heroSVG() + '</div></section>' +
+    '<div class="cards">' + SECTIONS.map(function (sec) {
+      var c = counts(sec), pct = Math.round(c.solved / c.total * 100);
+      return '<article class="card" style="--tabc:' + sec.color + '">' +
+        '<h2>' + sec.title + '</h2><p>' + sec.blurb + '</p>' +
+        '<div class="bar" role="img" aria-label="' + c.solved + ' of ' + c.total + ' questions solved"><i style="width:' + pct + '%"></i></div>' +
+        '<div class="stat">' + c.solved + ' of ' + c.total + ' questions solved</div>' +
+        '<div class="row"><button class="btn" data-act="open" data-sec="' + sec.id + '" data-tab="review">Review</button>' +
+        '<button class="btn primary" data-act="open" data-sec="' + sec.id + '" data-tab="practice">Practice</button></div></article>';
+    }).join('') + '</div>' +
+    '<p class="note">How practice works: choose how sure you feel, answer, and check. You can ask for a hint, try again, or open the full solution. Your progress is saved on this device.</p>';
+}
+
+function sectionView(sec) {
+  var head = '<button class="back" data-act="home">Back to topics</button>' +
+    '<div class="sec-head" style="--tabc:' + sec.color + '"><h1>' + sec.title + '</h1>' +
+    '<div class="tabs" role="group" aria-label="Review or practice">' +
+    '<button data-act="tab" data-tab="review"' + (v.tab === 'review' ? ' aria-current="page"' : '') + '>Review</button>' +
+    '<button data-act="tab" data-tab="practice"' + (v.tab === 'practice' ? ' aria-current="page"' : '') + '>Practice</button></div></div>';
+  return head + (v.tab === 'review' ? reviewView(sec) : practiceView(sec));
+}
+
+function reviewView(sec) {
+  var jump = '<div class="jump" aria-label="Jump to a topic">' + sec.topics.map(function (t) {
+    return '<button data-act="scroll" data-topic="' + t.id + '">' + t.title + '</button>';
+  }).join('') + '</div>';
+  return jump + sec.topics.map(function (t) {
+    var has = sec.problems.some(function (p) { return p.topic === t.id; });
+    return '<section class="topic" id="topic-' + t.id + '" style="--tabc:' + sec.color + '"><h2>' + t.title + '</h2>' + t.html +
+      (has ? '<button class="btn small" data-act="practice-topic" data-topic="' + t.id + '">Practice this topic</button>' : '') + '</section>';
+  }).join('');
+}
+
+function dotClass(id) {
+  var r = get(id);
+  if (r.solved) return r.first ? 'ok' : 'retry';
+  if (r.rev) return 'rev';
+  if (r.att > 0) return 'tried';
+  return '';
+}
+function dotLabel(id, n) {
+  var r = get(id), st = 'not started';
+  if (r.solved) st = r.first ? 'solved on the first try' : 'solved after retrying';
+  else if (r.rev) st = 'solution viewed';
+  else if (r.att > 0) st = 'attempted';
+  return 'Question ' + n + ', ' + st;
+}
+
+function practiceView(sec) {
+  var p = sec.problems[v.idx];
+  var dots = '<div class="dots" id="practice-top" role="group" aria-label="Questions">' + sec.problems.map(function (q, i) {
+    return '<button class="dot ' + dotClass(q.id) + (i === v.idx ? ' cur' : '') + '" data-act="goto" data-idx="' + i + '" aria-label="' + dotLabel(q.id, i + 1) + '"' + (i === v.idx ? ' aria-current="true"' : '') + '>' + (i + 1) + '</button>';
+  }).join('') + '</div>' +
+    '<p class="legend">Filled green: solved on the first try. Light green: solved after trying again. Orange: solution viewed.</p>';
+  var nav = '<div class="qnav"><button class="btn" data-act="prev"' + (v.idx === 0 ? ' disabled style="opacity:.5;cursor:default"' : '') + '>Previous</button>' +
+    (v.idx < sec.problems.length - 1
+      ? '<button class="btn primary" data-act="next">Next question</button>'
+      : '<button class="btn primary" data-act="progress">See my progress</button>') + '</div>';
+  return dots + problemCard(sec, p, v.idx) + nav;
+}
+
+function problemCard(sec, p, i) {
+  var r = get(p.id), u = U(p.id);
+  var locked = r.solved;
+  var out = '<div class="qcard"><div class="qmeta"><span>Question ' + (i + 1) + ' of ' + sec.problems.length + '</span><span>' + TOPIC[p.topic].title + '</span></div>';
+  out += '<p class="qprompt">' + p.prompt + '</p>';
+  if (p.fig) out += FIGS[p.fig]();
+
+  if (p.type === 'mc') {
+    out += '<div role="radiogroup" aria-label="Answer choices">' + ORDER[p.id].map(function (k) {
+      var o = p.options[k], cls = ['opt'];
+      if (u.sel === k) { cls.push('sel'); if (u.fb) cls.push(u.fb.ok ? 'good' : 'bad'); }
+      if (locked && o.ok) cls.push('good');
+      return '<label class="' + cls.join(' ') + '"><input type="radio" name="opt-' + p.id + '" value="' + k + '"' + (u.sel === k ? ' checked' : '') + (locked ? ' disabled' : '') + '><span>' + o.h + '</span></label>';
+    }).join('') + '</div>';
+  } else if (p.type === 'num') {
+    out += '<div class="numrow"><label for="numin" class="stat">Your answer</label><input id="numin" type="text" inputmode="text" autocomplete="off" value="' + esc(locked && !u.txt ? p.answer : u.txt) + '"' + (locked ? ' disabled' : '') + '>' + (p.unit ? '<span>' + p.unit + '</span>' : '') + '</div>';
+  } else if (p.type === 'table') {
+    out += '<table class="qt"><thead><tr><th scope="col">Statement</th><th scope="col">Your choice</th><th scope="col">Result</th></tr></thead><tbody>' + p.rows.map(function (row, k) {
+      var res = u.fb && u.fb.rows ? u.fb.rows[k] : null;
+      var cur = u.tab[k];
+      if (locked && cur === undefined) cur = row.ans;
+      var cls = res ? (res.ok ? 'good' : 'bad') : (locked ? 'good' : '');
+      return '<tr class="' + cls + '"><th scope="row" style="font-weight:400;color:inherit;font-size:inherit">' + row.label + '</th><td><select data-row="' + k + '" aria-label="' + esc(row.label) + '"' + (locked ? ' disabled' : '') + '>' +
+        '<option value=""' + (cur ? '' : ' selected') + '>Choose\u2026</option>' + row.choices.map(function (c) { return '<option' + (cur === c ? ' selected' : '') + '>' + c + '</option>'; }).join('') +
+        '</select></td><td class="st">' + (res ? (res.ok ? 'Correct' : 'Look again') : '') + '</td></tr>';
+    }).join('') + '</tbody></table>';
+  }
+
+  if (r.att === 0 && !locked) {
+    out += '<div class="conf" role="group" aria-label="How sure are you?"><span class="l">How sure are you?</span>' +
+      [['guess', 'Just guessing'], ['pretty', 'Pretty sure'], ['certain', 'Certain']].map(function (c) {
+        return '<button data-act="conf" data-v="' + c[0] + '" aria-pressed="' + (u.conf === c[0]) + '" class="' + (u.conf === c[0] ? 'on' : '') + '">' + c[1] + '</button>';
+      }).join('') + '</div>';
+  }
+
+  var wrong = u.fb && !u.fb.ok;
+  if (!locked) {
+    out += '<div class="actions">';
+    out += wrong ? '<button class="btn primary" data-act="retry">Try again</button>' : '<button class="btn primary" data-act="check">Check answer</button>';
+    if (!u.hint && p.hint) out += '<button class="btn" data-act="hint">Show a hint</button>';
+    if (r.att > 0 && !u.showSol) out += '<button class="btn" data-act="solution">Show solution</button>';
+    out += '</div>';
+  }
+  if (u.hint && !locked) out += '<div class="hintbox"><b>Hint.</b> ' + p.hint + '</div>';
+
+  out += '<div id="fb" tabindex="-1" aria-live="polite">';
+  if (u.msg) out += '<div class="fb info">' + u.msg + '</div>';
+  if (u.fb) {
+    if (u.fb.ok) out += '<div class="fb ok"><b>Correct.</b>' + (r.att > 1 ? ' Nice work sticking with it.' : '') + '</div>';
+    else out += '<div class="fb no"><b>Not yet.</b> ' + u.fb.why + (u.fb.over ? '<p>You marked this one as certain, so it is worth a second look at <button class="linkbtn" data-act="to-review" data-topic="' + p.topic + '">' + TOPIC[p.topic].title + '</button>.</p>' : '') + '</div>';
+  }
+  out += '</div>';
+
+  if (locked || u.showSol) {
+    out += '<div class="sol"><b>Solution.</b> ' + (p.type === 'table' ? '' : p.sol) + (p.type === 'table' ? p.sol : '') + (p.solFig ? FIGS[p.solFig]() : '') + '</div>';
+  }
+  return out + '</div>';
+}
+
+function progressView() {
+  var total = 0, solved = 0, firstOk = 0, attempted = 0, missed = {}, over = [], lucky = [];
+  SECTIONS.forEach(function (sec) {
+    sec.problems.forEach(function (p) {
+      total++;
+      var r = store.p[p.id];
+      if (!r) return;
+      if (r.att > 0) attempted++;
+      if (r.solved) solved++;
+      if (r.first === true) firstOk++;
+      if (r.first === false) {
+        (missed[p.topic] = missed[p.topic] || []).push(p.id);
+        if (r.conf === 'certain' || r.conf === 'pretty') over.push(p.id);
+      }
+      if (r.first === true && r.conf === 'guess') lucky.push(p.id);
+    });
+  });
+  var summary = attempted === 0
+    ? 'You have not answered any practice questions yet. Once you do, this page will show what to study next.'
+    : 'You have solved ' + solved + ' of ' + total + ' questions and got ' + firstOk + ' right on the first try.';
+  var out = '<h1 style="font-size:clamp(28px,5vw,40px);font-weight:800;margin:6px 0 8px">My progress</h1><p style="max-width:62ch;margin:0 0 6px">' + summary + '</p>';
+  out += '<div class="pgrid">' + SECTIONS.map(function (sec) {
+    var c = counts(sec), pct = Math.round(c.solved / c.total * 100);
+    return '<div class="prow" style="--tabc:' + sec.color + '"><h3>' + sec.title + '</h3>' +
+      '<div class="bar" role="img" aria-label="' + c.solved + ' of ' + c.total + ' solved"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="stat" style="margin-top:6px">' + c.solved + ' of ' + c.total + ' solved, ' + c.first + ' right on the first try</div></div>';
+  }).join('') + '</div>';
+
+  var topics = Object.keys(missed).sort(function (a, b) { return missed[b].length - missed[a].length; });
+  out += '<section class="panel"><h2>Study next</h2>';
+  if (!topics.length) out += '<p>' + (attempted ? 'No first-try misses so far. Keep going through the rest of the practice questions.' : 'Answer a few practice questions and your list will show up here.') + '</p>';
+  else {
+    out += '<p>These topics had questions you missed on the first try. Start at the top.</p>';
+    out += topics.map(function (tid) {
+      var t = TOPIC[tid], n = missed[tid].length;
+      return '<div class="studyrow"><div><b>' + t.title + '</b><br><span class="stat">' + n + (n === 1 ? ' question' : ' questions') + ' missed</span></div><div class="row">' +
+        '<button class="btn small" data-act="to-review" data-topic="' + tid + '">Review</button>' +
+        '<button class="btn small primary" data-act="practice-topic" data-topic="' + tid + '">Practice</button></div></div>';
+    }).join('');
+  }
+  out += '</section>';
+
+  if (over.length) {
+    out += '<section class="panel"><h2>You felt sure, but missed these</h2><p>These are the most useful ones to revisit, because a wrong answer you felt good about is the kind that shows up on a test.</p><ul class="pl">' +
+      over.map(function (id) { var e = PROB[id]; return '<li><button class="linkbtn" data-act="open-q" data-id="' + id + '">Question ' + (e.sec.problems.indexOf(e.p) + 1) + ' in ' + e.sec.short + '</button>, ' + TOPIC[e.p.topic].title.toLowerCase() + '</li>'; }).join('') + '</ul></section>';
+  }
+  if (lucky.length) {
+    out += '<section class="panel"><h2>Right, but you weren’t sure</h2><p>Read the solutions for these to lock in why they work.</p><ul class="pl">' +
+      lucky.map(function (id) { var e = PROB[id]; return '<li><button class="linkbtn" data-act="open-q" data-id="' + id + '">Question ' + (e.sec.problems.indexOf(e.p) + 1) + ' in ' + e.sec.short + '</button>, ' + TOPIC[e.p.topic].title.toLowerCase() + '</li>'; }).join('') + '</ul></section>';
+  }
+  out += '<section class="panel"><h2>Start over</h2>';
+  out += v.confirm
+    ? '<p>This clears your answers and progress on this device.</p><div class="row"><button class="btn primary" data-act="reset-yes">Yes, clear my progress</button><button class="btn" data-act="reset-no">Cancel</button></div>'
+    : '<p>Clear your answers and progress on this device.</p><button class="btn" data-act="reset">Reset progress</button>';
+  return out + '</section>';
+}
+
+/* ---------- render ---------- */
+function render(opts) {
+  opts = opts || {};
+  var html;
+  if (v.name === 'home') html = homeView();
+  else if (v.name === 'progress') html = progressView();
+  else html = sectionView(secById(v.sec));
+  app.innerHTML = html;
+  document.getElementById('nav-home').removeAttribute('aria-current');
+  document.getElementById('nav-progress').removeAttribute('aria-current');
+  if (v.name === 'home') document.getElementById('nav-home').setAttribute('aria-current', 'page');
+  if (v.name === 'progress') document.getElementById('nav-progress').setAttribute('aria-current', 'page');
+  if (opts.focusFb) { var f = document.getElementById('fb'); if (f) { f.focus({ preventScroll: true }); try { f.scrollIntoView({ block: 'nearest' }); } catch (e) { } } }
+  else if (opts.scrollTop) window.scrollTo(0, 0);
+  else if (opts.scrollTopic) { var el = document.getElementById('topic-' + opts.scrollTopic); if (el) el.scrollIntoView({ block: 'start' }); }
+  else if (opts.scrollPractice) { var pt = document.getElementById('practice-top'); if (pt) pt.scrollIntoView({ block: 'start' }); }
+}
+
+/* ---------- actions ---------- */
+function curProblem() { return secById(v.sec).problems[v.idx]; }
+
+function doCheck() {
+  var p = curProblem(), r = get(p.id), u = U(p.id);
+  u.msg = '';
+  var answered = false, ok = false, why = '', rows = null;
+  if (p.type === 'mc') {
+    answered = u.sel !== null;
+    if (answered) { var o = p.options[u.sel]; ok = !!o.ok; why = o.why || ''; }
+  } else if (p.type === 'num') {
+    var val = parseNum(u.txt);
+    if (String(u.txt).trim() === '') { u.msg = 'Type your answer first.'; render({ focusFb: true }); return; }
+    if (isNaN(val)) { u.msg = 'Enter a number, like 4, \u22122.5, or 5/2.'; render({ focusFb: true }); return; }
+    answered = true;
+    ok = Math.abs(val - p.answer) <= p.tol;
+    if (!ok) {
+      var w = (p.wrong || []).filter(function (x) { return x.t(val); })[0];
+      why = w ? w.why : p.generic;
+    }
+  } else if (p.type === 'table') {
+    answered = p.rows.every(function (row, k) { return !!u.tab[k]; });
+    if (answered) {
+      rows = p.rows.map(function (row, k) { return { ok: u.tab[k] === row.ans }; });
+      ok = rows.every(function (x) { return x.ok; });
+      why = 'Some rows need another look. They are marked in the table. Change them and check again.';
+    }
+  }
+  if (!answered) { u.msg = p.type === 'table' ? 'Answer every row first.' : 'Choose an answer first.'; render({ focusFb: true }); return; }
+  if (r.att === 0 && !u.conf) { u.msg = 'Pick how sure you feel, then check your answer.'; render({ focusFb: true }); return; }
+
+  var rr = rec(p.id);
+  rr.att++;
+  var firstTry = rr.first === null;
+  if (firstTry) { rr.first = ok; rr.conf = u.conf || null; rr.hint = !!u.hint; }
+  if (ok) rr.solved = true;
+  u.fb = { ok: ok, why: why, rows: rows, over: firstTry && !ok && u.conf === 'certain' };
+  save();
+  render({ focusFb: true });
+}
+
+app.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-act]');
+  if (!b || b.disabled) return;
+  var a = b.getAttribute('data-act');
+  if (a === 'home') { v = { name: 'home', sec: null, tab: 'review', idx: 0, confirm: false }; render({ scrollTop: true }); }
+  else if (a === 'progress') { v = { name: 'progress', sec: null, tab: 'review', idx: 0, confirm: false }; render({ scrollTop: true }); }
+  else if (a === 'open') { v = { name: 'section', sec: b.getAttribute('data-sec'), tab: b.getAttribute('data-tab'), idx: 0, confirm: false }; render({ scrollTop: true }); }
+  else if (a === 'tab') { v.tab = b.getAttribute('data-tab'); render({ scrollTop: true }); }
+  else if (a === 'goto') { v.idx = parseInt(b.getAttribute('data-idx'), 10); render({ scrollPractice: true }); }
+  else if (a === 'next') { var n = secById(v.sec).problems.length; if (v.idx < n - 1) { v.idx++; render({ scrollPractice: true }); } }
+  else if (a === 'prev') { if (v.idx > 0) { v.idx--; render({ scrollPractice: true }); } }
+  else if (a === 'scroll') { var el = document.getElementById('topic-' + b.getAttribute('data-topic')); if (el) el.scrollIntoView({ block: 'start' }); }
+  else if (a === 'practice-topic' || a === 'to-review') {
+    var tid = b.getAttribute('data-topic'), sec = TOPIC[tid].sec;
+    if (a === 'to-review') { v = { name: 'section', sec: sec.id, tab: 'review', idx: 0, confirm: false }; render({ scrollTopic: tid }); }
+    else {
+      var idx = 0;
+      for (var i = 0; i < sec.problems.length; i++) { if (sec.problems[i].topic === tid) { idx = i; if (!get(sec.problems[i].id).solved) break; } }
+      v = { name: 'section', sec: sec.id, tab: 'practice', idx: idx, confirm: false }; render({ scrollTop: true });
+    }
+  }
+  else if (a === 'open-q') { var e2 = PROB[b.getAttribute('data-id')]; v = { name: 'section', sec: e2.sec.id, tab: 'practice', idx: e2.sec.problems.indexOf(e2.p), confirm: false }; render({ scrollTop: true }); }
+  else if (a === 'conf') {
+    var p = curProblem(), u = U(p.id); u.conf = b.getAttribute('data-v');
+    var group = b.parentNode.querySelectorAll('button[data-act="conf"]');
+    for (var k = 0; k < group.length; k++) { var on = group[k] === b; group[k].classList.toggle('on', on); group[k].setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  }
+  else if (a === 'check') doCheck();
+  else if (a === 'retry') {
+    var p2 = curProblem(), u2 = U(p2.id); u2.fb = null; u2.msg = '';
+    if (p2.type === 'mc') u2.sel = null;
+    if (p2.type === 'num') u2.txt = '';
+    render({});
+    var inp = document.getElementById('numin'); if (inp) inp.focus();
+  }
+  else if (a === 'hint') { var p3 = curProblem(); U(p3.id).hint = true; render({}); }
+  else if (a === 'solution') { var p4 = curProblem(), u4 = U(p4.id); u4.showSol = true; var rr = rec(p4.id); if (!rr.solved) rr.rev = true; save(); render({}); }
+  else if (a === 'reset') { v.confirm = true; render({}); }
+  else if (a === 'reset-no') { v.confirm = false; render({}); }
+  else if (a === 'reset-yes') { store = { p: {} }; UI = {}; save(); v.confirm = false; render({ scrollTop: true }); }
+});
+
+app.addEventListener('change', function (e) {
+  var t = e.target;
+  if (t.matches('input[type="radio"]')) {
+    var p = curProblem(), u = U(p.id); u.sel = parseInt(t.value, 10);
+    var labels = t.closest('[role="radiogroup"]').querySelectorAll('.opt');
+    for (var i = 0; i < labels.length; i++) labels[i].classList.remove('sel');
+    t.closest('.opt').classList.add('sel');
+  } else if (t.matches('select[data-row]')) {
+    var p2 = curProblem(); U(p2.id).tab[t.getAttribute('data-row')] = t.value;
+  }
+});
+app.addEventListener('input', function (e) {
+  if (e.target.id === 'numin') { var p = curProblem(); U(p.id).txt = e.target.value; }
+});
+app.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && e.target.id === 'numin') { e.preventDefault(); doCheck(); }
+});
+
+/* ---------- start (supports plain #token links) ---------- */
+(function init() {
+  try {
+    var h = (window.location.hash || '').replace('#', '');
+    if (h === 'progress') v.name = 'progress';
+    else {
+      var m = h.match(/^(linear|systems|stats)-(review|practice)$/);
+      if (m) { v.name = 'section'; v.sec = m[1]; v.tab = m[2]; }
+    }
+  } catch (e) { }
+  render({});
+})();
+</script>
+</body>
+</html>
